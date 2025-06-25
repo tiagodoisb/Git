@@ -1,141 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Alocação 25/06/2025 - Area Tecnica</title>
+  <title>Equipe Atualizada</title>
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f0f2f5;
-      color: #333;
-      margin: 0;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
     }
-
-    .header {
-      background-color: #004080;
-      color: #fff;
-      padding: 20px;
+    h2 {
       text-align: center;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      font-size: 1.8em;
+      color: #333;
     }
-
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
     .card {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      flex: 1 1 250px;
-      min-width: 250px;
-      max-width: 300px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-      border-left: 6px solid #004080;
+      background: white;
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin: 10px auto;
+      max-width: 600px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.2em;
-    }
-
-    .card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .card ul li::before {
-      content: "• ";
-      color: #004080;
-      font-weight: bold;
-    }
-
-    @media (max-width: 768px) {
-      .card {
-        max-width: 100%;
-      }
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
   </style>
 </head>
 <body>
 
-  <div class="header">📅 Alocação – 25/06/2025</div>
+  <h2>Equipe Atualizada via Google Sheets</h2>
+  <div id="lista"></div>
 
-  <div class="grid">
+  <script>
+    const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSRb1UXZk5S6Ipr3dfW8j1CZIHskvYpuGBM3Vq_g_qYRP1IGFb655DqeRI5QNwJhS_DmUZpFEdbHXeq/pub?gid=1012098887&single=true&output=csv";
 
-    <div class="card">
-      <h3>📞 Fone</h3>
-      <ul>
-        <li>Caique Santana (avaliando relatorios)</li>
-        <li>Carine Almeida</li>
-        <li>Douglas Amaral</li>
-        <li>Gabrielle Nascimento</li>
-        <li>Pedro Henrique</li>
-        <li>Jefferson Perrone</li>
-        <li>Gerson JR</li>
-      </ul>
-    </div>
+    async function carregarDados() {
+      const resposta = await fetch(urlCSV);
+      const texto = await resposta.text();
+      const linhas = texto.trim().split('\n');
 
-    <div class="card">
-      <h3>🌐 Web</h3>
-      <ul>
-        <li>Vinicius Tosta</li>
-      </ul>
-    </div>
+      const cabecalho = linhas[0].split(',');
+      const conteudo = linhas.slice(1);
 
-    <div class="card">
-      <h3>🛫 Exp-Imp</h3>
-      <ul>
-        <li>Carla Franco</li>
-        <li>Thiago Jesus</li>
-      </ul>
-    </div>
+      const container = document.getElementById('lista');
+      conteudo.forEach(linha => {
+        const dados = linha.split(',');
+        const card = document.createElement('div');
+        card.className = 'card';
 
-    <div class="card">
-      <h3>🎯 Performance</h3>
-      <ul>
-        <li>Maria Nascimento</li>
-      </ul>
-    </div>
+        const conteudoHTML = dados.map((dado, i) => `<strong>${cabecalho[i]}:</strong> ${dado}`).join('<br>');
+        card.innerHTML = conteudoHTML;
 
-    <div class="card">
-      <h3>🤝 Apoio</h3>
-      <ul>
-        <li>Tiago Barbosa</li>
-      </ul>
-    </div>
+        container.appendChild(card);
+      });
+    }
 
-    <div class="card">
-      <h3>📚 Treinamento</h3>
-      <ul>
-        <li>Rafael Nolasco</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>🏖️ Férias</h3>
-      <ul>
-        <li>Alisson Santana</li>
-        <li>Maicon Franca</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>👔 Gestor</h3>
-      <ul>
-        <li>Rafael Andrade</li>
-      </ul>
-    </div>
-
-  </div>
+    carregarDados();
+  </script>
 
 </body>
 </html>
