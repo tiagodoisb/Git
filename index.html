@@ -2,63 +2,173 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Equipe Atualizada</title>
+  <title>Alocação – 25/06/2025</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 30px;
-    }
-    h2 {
-      text-align: center;
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      background: linear-gradient(to right, #eef2f7, #f5f8fb);
+      margin: 0;
+      padding: 40px;
       color: #333;
     }
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 15px 20px;
-      margin: 10px auto;
-      max-width: 600px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+
+    .header {
+      background-color: #2c3e50;
+      color: #ffffff;
+      padding: 25px;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 2em;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
     }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 18px;
+      padding: 20px 25px;
+      flex: 1 1 260px;
+      min-width: 260px;
+      max-width: 320px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border-top: 5px solid #3498db;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+    }
+
     .card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transform: scale(1.03);
+      background-color: #f0f8ff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      border-top: 5px solid #2c80d3;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.3em;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 12px;
+    }
+
+    .card ul li {
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .card ul li:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .card {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h2>Equipe Atualizada diariamente</h2>
-  <div id="lista"></div>
+  <div class="header">📅 Alocação – 26/06/2025</div>
 
-  <script>
-    const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSRb1UXZk5S6Ipr3dfW8j1CZIHskvYpuGBM3Vq_g_qYRP1IGFb655DqeRI5QNwJhS_DmUZpFEdbHXeq/pub?gid=1012098887&single=true&output=csv";
+  <div class="grid">
 
-    async function carregarDados() {
-      const resposta = await fetch(urlCSV);
-      const texto = await resposta.text();
-      const linhas = texto.trim().split('\n');
+    <div class="card">
+      <h3>📞 Fone</h3>
+      <ul>
+        <li>Carine Almeida</li>
+        <li>Caique Santana</li>
+        <li>Douglas Amaral</li>
+        <li>Gabrielle Nascimento</li>
+        <li>Gerson JR</li>
+        <li>Jefferson Perrone</li>
+        <li>Pedro Henrique</li>
+      </ul>
+    </div>
 
-      const cabecalho = linhas[0].split(',');
-      const conteudo = linhas.slice(1);
+    <div class="card">
+      <h3>🌐 Web</h3>
+      <ul>
+        <li>Vinicius Tosta</li>
+      </ul>
+    </div>
 
-      const container = document.getElementById('lista');
-      conteudo.forEach(linha => {
-        const dados = linha.split(',');
-        const card = document.createElement('div');
-        card.className = 'card';
+    <div class="card">
+      <h3>🛫 Exp-Imp</h3>
+      <ul>
+        <li>Thiago Jesus</li>
+      </ul>
+    </div>
 
-        const conteudoHTML = dados.map((dado, i) => `<strong>${cabecalho[i]}:</strong> ${dado}`).join('<br>');
-        card.innerHTML = conteudoHTML;
+    <div class="card">
+      <h3>🛫 Conversão</h3>
+      <ul>
+        <li>Carla Franco</li>
+      </ul>
+    </div>
 
-        container.appendChild(card);
-      });
-    }
+    <div class="card">
+      <h3>🎯 Performance</h3>
+      <ul>
+        <li>Maria Nascimento</li>
+      </ul>
+    </div>
 
-    carregarDados();
-  </script>
+    <div class="card">
+      <h3>🤝 Apoio</h3>
+      <ul>
+        <li>Tiago Barbosa</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📚 Treinamento</h3>
+      <ul>
+        <li>Rafael Nolasco</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📝 Relatórios</h3>
+      <ul>
+        <li>Caique Santana</li>
+        <li>Alisson Santana</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🏖️ Férias</h3>
+      <ul>
+        <li>Maicon Franca</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>👔 Gestor</h3>
+      <ul>
+        <li>Rafael Andrade</li>
+      </ul>
+    </div>
+
+  </div>
 
 </body>
 </html>
